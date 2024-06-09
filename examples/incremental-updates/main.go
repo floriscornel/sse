@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/floriscornel/sse-writer"
+	"github.com/floriscornel/sse"
 )
 
 // main starts the server and listens for incoming connections.

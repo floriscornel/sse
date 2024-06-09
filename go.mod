@@ -1,4 +1,4 @@
-module github.com/floriscornel/sse-writer
+module github.com/floriscornel/sse
 
 go 1.22.3
 
