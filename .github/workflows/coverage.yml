@@ -12,8 +12,8 @@ permissions:
 
 
 jobs:
-  lint:
-    name: Lint and Format
+  coverage:
+    name: Run tests and upload coverage
     runs-on: ubuntu-latest
 
     steps:
@@ -32,4 +32,3 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          
