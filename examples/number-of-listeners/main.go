@@ -25,7 +25,7 @@ type listenerMessage struct {
 // It sends a "update" message every time a new client connects or disconnects.
 func handler(w http.ResponseWriter, r *http.Request) {
 	sw := sse.NewResponseWriter(w, sse.Options{
-		Encoding: sse.Encode_Gzip,
+		Encoding: sse.EncodeGzip,
 	})
 
 	// We generate a random ID for this listener.

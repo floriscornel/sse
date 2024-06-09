@@ -21,7 +21,7 @@ func main() {
 // random updates to the player list every 5 seconds.
 func handler(w http.ResponseWriter, r *http.Request) {
 	sw := sse.NewResponseWriter(w, sse.Options{
-		Encoding: sse.Encode_Brotli,
+		Encoding: sse.EncodeBrotli,
 	})
 	fmt.Println("New client connected")
 
