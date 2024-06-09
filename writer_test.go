@@ -88,18 +88,27 @@ func TestResponseWriter_Write(t *testing.T) {
 				}
 				defer r.Close()
 				buf := new(bytes.Buffer)
-				buf.ReadFrom(r)
+				_, err = buf.ReadFrom(r)
+				if err != nil {
+					t.Fatalf("failed to read from gzip reader: %v", err)
+				}
 				output = buf.String()
 			case EncodeBrotli:
 				r := brotli.NewReader(rec.Body)
 				buf := new(bytes.Buffer)
-				buf.ReadFrom(r)
+				_, err = buf.ReadFrom(r)
+				if err != nil {
+					t.Fatalf("failed to read from brotli reader: %v", err)
+				}
 				output = buf.String()
 			case EncodeDeflate:
 				r := flate.NewReader(rec.Body)
 				defer r.Close()
 				buf := new(bytes.Buffer)
-				buf.ReadFrom(r)
+				_, err = buf.ReadFrom(r)
+				if err != nil {
+					t.Fatalf("failed to read from deflate reader: %v", err)
+				}
 				output = buf.String()
 			case EncodeZstd:
 				r, err := zstd.NewReader(rec.Body)
@@ -108,7 +117,10 @@ func TestResponseWriter_Write(t *testing.T) {
 				}
 				defer r.Close()
 				buf := new(bytes.Buffer)
-				buf.ReadFrom(r)
+				_, err = buf.ReadFrom(r)
+				if err != nil {
+					t.Fatalf("failed to read from zstd reader: %v", err)
+				}
 				output = buf.String()
 			default:
 				output = rec.Body.String()

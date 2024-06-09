@@ -68,7 +68,11 @@ func TestEncodeOutputs(t *testing.T) {
 		}
 		defer reader.Close()
 		buf := new(bytes.Buffer)
-		buf.ReadFrom(reader)
+		_, err = buf.ReadFrom(reader)
+		if err != nil {
+			t.Errorf("buf.ReadFrom() error = %v", err)
+			return
+		}
 		if buf.String() != input {
 			t.Errorf("gzip decoding = %v, want %v", buf.String(), input)
 		}
@@ -82,7 +86,11 @@ func TestEncodeOutputs(t *testing.T) {
 		}
 		reader := brotli.NewReader(bytes.NewReader(got))
 		buf := new(bytes.Buffer)
-		buf.ReadFrom(reader)
+		_, err = buf.ReadFrom(reader)
+		if err != nil {
+			t.Errorf("buf.ReadFrom() error = %v", err)
+			return
+		}
 		if buf.String() != input {
 			t.Errorf("brotli decoding = %v, want %v", buf.String(), input)
 		}
@@ -97,7 +105,11 @@ func TestEncodeOutputs(t *testing.T) {
 		reader := flate.NewReader(bytes.NewReader(got))
 		defer reader.Close()
 		buf := new(bytes.Buffer)
-		buf.ReadFrom(reader)
+		_, err = buf.ReadFrom(reader)
+		if err != nil {
+			t.Errorf("buf.ReadFrom() error = %v", err)
+			return
+		}
 		if buf.String() != input {
 			t.Errorf("deflate decoding = %v, want %v", buf.String(), input)
 		}
@@ -116,7 +128,11 @@ func TestEncodeOutputs(t *testing.T) {
 		}
 		defer reader.Close()
 		buf := new(bytes.Buffer)
-		buf.ReadFrom(reader)
+		_, err = buf.ReadFrom(reader)
+		if err != nil {
+			t.Errorf("buf.ReadFrom() error = %v", err)
+			return
+		}
 		if buf.String() != input {
 			t.Errorf("compress decoding = %v, want %v", buf.String(), input)
 		}
@@ -135,7 +151,11 @@ func TestEncodeOutputs(t *testing.T) {
 		}
 		defer reader.Close()
 		buf := new(bytes.Buffer)
-		buf.ReadFrom(reader)
+		_, err = buf.ReadFrom(reader)
+		if err != nil {
+			t.Errorf("buf.ReadFrom() error = %v", err)
+			return
+		}
 		if buf.String() != input {
 			t.Errorf("zstd decoding = %v, want %v", buf.String(), input)
 		}
