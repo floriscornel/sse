@@ -140,19 +140,32 @@ func TestResponseWriter_SendHeaders(t *testing.T) {
 
 	headers := rec.Result().Header
 	if headers.Get("Content-Type") != "text/event-stream" {
-		t.Errorf("expected Content-Type header to be 'text/event-stream', got %s", headers.Get("Content-Type"))
+		t.Errorf(
+			"expected Content-Type header to be 'text/event-stream', got %s",
+			headers.Get("Content-Type"),
+		)
 	}
 	if headers.Get("Cache-Control") != "no-store" {
-		t.Errorf("expected Cache-Control header to be 'no-store', got %s", headers.Get("Cache-Control"))
+		t.Errorf(
+			"expected Cache-Control header to be 'no-store', got %s",
+			headers.Get("Cache-Control"),
+		)
 	}
 	if headers.Get("Connection") != "keep-alive" {
 		t.Errorf("expected Connection header to be 'keep-alive', got %s", headers.Get("Connection"))
 	}
 	if headers.Get("Content-Encoding") != EncodeGzip {
-		t.Errorf("expected Content-Encoding header to be 'gzip', got %s", headers.Get("Content-Encoding"))
+		t.Errorf(
+			"expected Content-Encoding header to be 'gzip', got %s",
+			headers.Get("Content-Encoding"),
+		)
 	}
 	if rec.Result().StatusCode != http.StatusAccepted {
-		t.Errorf("expected status code to be %d, got %d", http.StatusAccepted, rec.Result().StatusCode)
+		t.Errorf(
+			"expected status code to be %d, got %d",
+			http.StatusAccepted,
+			rec.Result().StatusCode,
+		)
 	}
 }
 
