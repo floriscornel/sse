@@ -2,7 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/floriscornel/sse?status.svg)](https://godoc.org/github.com/floriscornel/sse)
 [![Go Report Card](https://goreportcard.com/badge/github.com/floriscornel/sse)](https://goreportcard.com/report/github.com/floriscornel/sse)
-[![Codecov](https://img.shields.io/codecov/c/github/floriscornel/sse.svg)](https://codecov.io/gh/floriscornel/sse)
+[![Codecov](https://codecov.io/gh/floriscornel/sse/graph/badge.svg?token=ZVRRMBMJTH)](https://codecov.io/gh/floriscornel/sse)
 [![License](https://img.shields.io/github/license/floriscornel/sse.svg)](https://github.com/floriscornel/sse/blob/main/LICENSE)
 
 `sse` is a lightweight Go library for writing [Server-Sent Events (SSE)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events). This library allows easy integration of SSE into web servers, providing real-time updates to connected clients.
