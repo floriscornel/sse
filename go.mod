@@ -1,8 +1,8 @@
 module github.com/floriscornel/sse
 
-go 1.22.3
+go 1.23.0
 
 require (
-	github.com/andybalholm/brotli v1.1.0
-	github.com/klauspost/compress v1.17.10
+	github.com/andybalholm/brotli v1.1.1
+	github.com/klauspost/compress v1.17.11
 )
