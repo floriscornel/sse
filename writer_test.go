@@ -86,7 +86,11 @@ func TestResponseWriter_Write(t *testing.T) {
 				if err != nil {
 					t.Fatalf("failed to create gzip reader: %v", err)
 				}
-				defer r.Close()
+				defer func() {
+					if err := r.Close(); err != nil {
+						t.Errorf("r.Close() error = %v", err)
+					}
+				}()
 				buf := new(bytes.Buffer)
 				_, err = buf.ReadFrom(r)
 				if err != nil {
@@ -103,7 +107,11 @@ func TestResponseWriter_Write(t *testing.T) {
 				output = buf.String()
 			case EncodeDeflate:
 				r := flate.NewReader(rec.Body)
-				defer r.Close()
+				defer func() {
+					if err := r.Close(); err != nil {
+						t.Errorf("r.Close() error = %v", err)
+					}
+				}()
 				buf := new(bytes.Buffer)
 				_, err = buf.ReadFrom(r)
 				if err != nil {
