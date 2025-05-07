@@ -66,7 +66,11 @@ func TestEncodeOutputs(t *testing.T) {
 			t.Errorf("gzip.NewReader() error = %v", err)
 			return
 		}
-		defer reader.Close()
+		defer func() {
+			if err := reader.Close(); err != nil {
+				t.Errorf("reader.Close() error = %v", err)
+			}
+		}()
 		buf := new(bytes.Buffer)
 		_, err = buf.ReadFrom(reader)
 		if err != nil {
@@ -103,7 +107,11 @@ func TestEncodeOutputs(t *testing.T) {
 			return
 		}
 		reader := flate.NewReader(bytes.NewReader(got))
-		defer reader.Close()
+		defer func() {
+			if err := reader.Close(); err != nil {
+				t.Errorf("reader.Close() error = %v", err)
+			}
+		}()
 		buf := new(bytes.Buffer)
 		_, err = buf.ReadFrom(reader)
 		if err != nil {
@@ -126,7 +134,11 @@ func TestEncodeOutputs(t *testing.T) {
 			t.Errorf("zlib.NewReader() error = %v", err)
 			return
 		}
-		defer reader.Close()
+		defer func() {
+			if err := reader.Close(); err != nil {
+				t.Errorf("reader.Close() error = %v", err)
+			}
+		}()
 		buf := new(bytes.Buffer)
 		_, err = buf.ReadFrom(reader)
 		if err != nil {

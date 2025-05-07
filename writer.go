@@ -83,7 +83,10 @@ func (rw *responseWriter) sendHeaders() {
 		status = http.StatusOK
 	}
 	rw.writer.WriteHeader(status)
-	rw.flush()
+	//nolint:staticcheck
+	if err := rw.flush(); err != nil {
+		// Intentionally ignored: cannot recover from flush error after headers are sent
+	}
 }
 
 // flush flushes the response.
